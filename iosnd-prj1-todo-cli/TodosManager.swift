@@ -46,7 +46,9 @@ class TodosManager {
     }
 
     private func saveTodos() {
-        cacheProvider.save(todos: todos)
+        if cacheProvider.save(todos: todos) == false {
+            print("Failed to save todos.")
+        }
     }
 }
 
