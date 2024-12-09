@@ -1,8 +1,8 @@
 import Foundation
 
 class App {
-    private let inputView = InputView()
     private let todosManager: TodosManager
+    private let inputView: InputView
 
     enum CacheProviderOption {
         case fileSystem
@@ -26,6 +26,7 @@ class App {
 
     init(cacheProviderOption: CacheProviderOption = .fileSystem) {
        self.todosManager = TodosManager(cacheProvider: cacheProviderOption == .fileSystem ? FileSystemCache() : InMemoryCache())
+       self.inputView = InputView(todosManager: todosManager)
     }
 
     func run() {

@@ -50,5 +50,9 @@ class TodosManager {
             print("Failed to save todos.")
         }
     }
+
+    func isValidIndex(_ index: Int) -> Bool {
+        return index >= 0 && index < todos.count
+    }
 }
 
