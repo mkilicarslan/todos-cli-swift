@@ -1,7 +1,14 @@
+import Foundation
+
 class App {
     private let inputView = InputView()
-    private let todosManager = TodosManager()
-    
+    private let todosManager: TodosManager
+
+    enum CacheProviderOption {
+        case fileSystem
+        case inMemory
+    }
+
     enum Command {
         case add
         case list
@@ -15,6 +22,10 @@ class App {
         case success
         case failure
         case exit
+    }
+
+    init(cacheProviderOption: CacheProviderOption = .fileSystem) {
+       self.todosManager = TodosManager(cacheProvider: cacheProviderOption == .fileSystem ? FileSystemCache() : InMemoryCache())
     }
 
     func run() {
